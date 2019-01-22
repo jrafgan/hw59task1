@@ -14,8 +14,9 @@ class App extends Component {
         movies: [],
     };
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.state.movies !== nextState.movies;
+
+    shouldComponentUpdate(nextProps) {
+        return this.props.name === nextProps.name && this.props.id === nextProps.id;
     }
 
     componentDidMount() {
@@ -42,7 +43,6 @@ class App extends Component {
         let copy = this.state.movies;
         const index = copy.findIndex(item => item.id === parseFloat(id));
         copy[index].text = event.currentTarget.value;
-        console.log(copy[index]);
         this.setState({movies: copy})
         localStorage.setItem('movie', JSON.stringify(copy));
     }
@@ -65,7 +65,7 @@ class App extends Component {
         return (
             <div className="App container">
                 <div className="input-form">
-                    <InputForm onChangeName={this.addNewMovie.bind(this)} addBtn={this.addBtn.bind(this)}/>
+                    <InputForm onChangeName={this.addNewMovie.bind(this)} onClick={this.addBtn.bind(this)}/>
                 </div>
                 <div className="outcomeList">
                     <p>List of Movies to Watch : </p>
