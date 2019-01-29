@@ -16,7 +16,7 @@ class App extends Component {
 
 
     shouldComponentUpdate(nextProps) {
-        return this.props.name === nextProps.name && this.props.id === nextProps.id;
+        return this.props.text === nextProps.text && this.props.id === nextProps.id;
     }
 
     componentDidMount() {
